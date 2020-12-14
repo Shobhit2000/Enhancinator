@@ -26,7 +26,6 @@ For example, you stream a video in 144p resolution which takes about 5 mb of dat
 
 **Demonstration**
 
-![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/36446402/102006500-8e0b2700-3d47-11eb-9c18-9d77cd674f08.gif)
 
 ## Future Scope
 
