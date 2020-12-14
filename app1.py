@@ -10,7 +10,7 @@ app.secret_key='12345678'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index1.html')
 
 def resolve_and_plot(model_pre_trained, model_fine_tuned, lr_image_path):
     lr = lr_image_path
@@ -87,7 +87,7 @@ def gen1(x):
 def video_feed1():
     url = request.form["first_name"]
     session['url']=url
-    return render_template('index.html')
+    return render_template('index1.html')
 
 @app.route('/video_feed')
 def video_feed():
