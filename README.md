@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/MehulAgarwal07/GlobalCert/blob/main/Images/AUTOCERT.png" width="1000" title="hover text">
+  <img src="https://github.com/Shobhit2000/Enhancinator/blob/master/Images/Component%201.png" width="1000" title="hover text">
 </p>
 # AMBiguouS
 
