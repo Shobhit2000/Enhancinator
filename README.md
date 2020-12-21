@@ -25,7 +25,8 @@ In order to solve the above mentioned issue, we have come up with a project that
 For example, you stream a video in 144p resolution which takes about 5 mb of data and the same video on 360p resolution takes 30 mb of data, but with out platform you can stream the same 360p video in that 5mb of data itself and nothing more there by reducing your internet consumption to around 5-10 times (depending on the video) of what it would have consumed normally.
 
 **Demonstration**
-
+![](Images/logo.png)
+![](Images/demo.jpeg)
 
 ## Future Scope
 
