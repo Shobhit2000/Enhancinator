@@ -1,10 +1,7 @@
 from flask import Flask, render_template, Response, request, session, redirect, url_for, escape
 import youtube_dl
 import time
-import
-
-
-
+import Enhancinator
 import cv2
 import numpy as np
 
@@ -36,11 +33,10 @@ def gen(x):
                 if not ret:
                     break
 
-                lr, sr = Enhancinator.sr(frame)
+                sr = Enhancinator.sr(frame)
                 frame = cv2.resize(frame, (640, 360))
                 sr = cv2.resize(sr, (640, 360))
-                sr1 = np.vstack((frame,sr))
-                (flag, encodedImage) = cv2.imencode(".jpg", sr1)
+                (flag, encodedImage) = cv2.imencode(".jpg", sr)
                 yield (b'--frame\r\n' 
                        b'Content-Type: image/jpeg\r\n\r\n' + bytearray(encodedImage) + b'\r\n')
 
@@ -89,7 +85,7 @@ def video_feed():
     except:
         pass
     print(url)
-    return Response(gen(url),
+    return Response(gen1(url),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/video_fee')
@@ -100,7 +96,7 @@ def video_fee():
     except:
         pass
     print(url)
-    return Response(gen1(url),
+    return Response(gen(url),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':

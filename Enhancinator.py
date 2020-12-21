@@ -54,27 +54,23 @@ def normalize(x):
 def denormalize(x):
     return x * 127.5 + DIV2K_RGB_MEAN
 
-def resolve_and_plot(model_pre_trained, model_fine_tuned, lr_image_path):
+def resolve_and_plot(model, lr):
 
-    lr = lr_image_path
-    sr_pt = resolve_single(model_pre_trained, lr)
+    sr_pt = resolve_single(model, lr)
     return sr_pt
         
 weights_dir = 'weights/'
 
 # Load weights
-edsr_pre_trained = edsr(scale=4, num_res_blocks=16)
-edsr_pre_trained.load_weights(os.path.join(weights_dir, 'weights-edsr-16-x4.h5'))
-
-edsr_fine_tuned = edsr(scale=4, num_res_blocks=16)
-edsr_fine_tuned.load_weights(os.path.join(weights_dir, 'weights-edsr-16-x4-fine-tuned.h5'))
+model = edsr(scale=4, num_res_blocks=16)
+model.load_weights(os.path.join(weights_dir, 'enhance.h5'))
 
 # Prediction
 def sr(img):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     lr = cv2.resize(img, (640, 360))
-    sr = resolve_and_plot(edsr_pre_trained, edsr_fine_tuned, img)
+    sr = resolve_and_plot(model, img)
     sr = np.array(sr)
     sr = cv2.cvtColor(sr, cv2.COLOR_RGB2BGR)
     sr = cv2.resize(sr, (640, 360))
-    return lr, sr
+    return sr
