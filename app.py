@@ -1,7 +1,10 @@
 from flask import Flask, render_template, Response, request, session, redirect, url_for, escape
 import youtube_dl
 import time
-import SRCNN
+import
+
+
+
 import cv2
 import numpy as np
 
@@ -10,7 +13,7 @@ app.secret_key='12345678'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index1.html')
 
 def gen(x):
     video_url = x
@@ -33,7 +36,7 @@ def gen(x):
                 if not ret:
                     break
 
-                lr, sr = SRCNN.sr(frame)
+                lr, sr = Enhancinator.sr(frame)
                 frame = cv2.resize(frame, (640, 360))
                 sr = cv2.resize(sr, (640, 360))
                 sr1 = np.vstack((frame,sr))
@@ -75,7 +78,7 @@ def gen1(x):
 def video_feed1():
     url = request.form["first_name"]
     session['url']=url
-    return render_template('index.html')
+    return render_template('index1.html')
     #return Response(gen(url),mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/video_feed')
