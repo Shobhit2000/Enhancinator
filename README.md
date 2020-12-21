@@ -1,6 +1,7 @@
 <p align="center">
   <img src="https://github.com/Shobhit2000/Enhancinator/blob/master/Images/Component%201.png" width="1000" title="hover text">
 </p>
+
 # AMBiguouS
 
 This repository contains codes and demonstrations of our project that was completed during InOut 7.0 2020.
