@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="https://github.com/MehulAgarwal07/GlobalCert/blob/main/Images/AUTOCERT.png" width="1000" title="hover text">
+</p>
 # AMBiguouS
 
 This repository contains codes and demonstrations of our project that was completed during InOut 7.0 2020.
