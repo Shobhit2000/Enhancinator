@@ -12,16 +12,13 @@ def edsr(scale, num_filters=64, num_res_blocks=8, res_block_scaling=None):
     """Creates an EDSR model."""
     x_in = Input(shape=(None, None, 3))
     x = Lambda(normalize)(x_in)
-
     x = b = Conv2D(num_filters, 3, padding='same')(x)
     for i in range(num_res_blocks):
         b = res_block(b, num_filters, res_block_scaling)
     b = Conv2D(num_filters, 3, padding='same')(b)
     x = Add()([x, b])
-
     x = upsample(x, scale, num_filters)
     x = Conv2D(3, 3, padding='same')(x)
-
     x = Lambda(denormalize)(x)
     return Model(x_in, x, name="edsr")
 
@@ -48,7 +45,6 @@ def upsample(x, scale, num_filters):
     elif scale == 4:
         x = upsample_1(x, 2, name='conv2d_1_scale_2')
         x = upsample_1(x, 2, name='conv2d_2_scale_2')
-
     return x
 
 
@@ -80,11 +76,8 @@ edsr_fine_tuned.load_weights(os.path.join(weights_dir, 'weights-edsr-16-x4-fine-
 def sr(img):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     lr = cv2.resize(img, (640, 360))
-
     sr = resolve_and_plot(edsr_pre_trained, edsr_fine_tuned, img)
     sr = np.array(sr)
     sr = cv2.cvtColor(sr, cv2.COLOR_RGB2BGR)
-
     sr = cv2.resize(sr, (640, 360))
-
     return lr, sr
