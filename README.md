@@ -41,4 +41,3 @@ For example, you stream a video in 144p resolution which takes about 5 mb of dat
 * [*Bhavesh Goyal*](https://github.com/bhaveshgoyal27)
 * [*Alankrit Bhardwaj*](https://github.com/alan478)
 * [*Mehul Agarwal*](https://github.com/MehulAgarwal07)
-* [*Anurag Bhardwaj*](https://github.com/ABX9801)
