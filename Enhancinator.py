@@ -9,7 +9,6 @@ from model import resolve_single
 DIV2K_RGB_MEAN = np.array([0.4488, 0.4371, 0.4040]) * 255
 
 def edsr(scale, num_filters=64, num_res_blocks=8, res_block_scaling=None):
-    """Creates an EDSR model."""
     x_in = Input(shape=(None, None, 3))
     x = Lambda(normalize)(x_in)
     x = b = Conv2D(num_filters, 3, padding='same')(x)
@@ -24,7 +23,6 @@ def edsr(scale, num_filters=64, num_res_blocks=8, res_block_scaling=None):
 
 
 def res_block(x_in, filters, scaling):
-    """Creates an EDSR residual block."""
     x = Conv2D(filters, 3, padding='same', activation='relu')(x_in)
     x = Conv2D(filters, 3, padding='same')(x)
     if scaling:
@@ -34,7 +32,6 @@ def res_block(x_in, filters, scaling):
 
 def upsample(x, scale, num_filters):
     def upsample_1(x, factor, **kwargs):
-        """Sub-pixel convolution."""
         x = Conv2D(num_filters * (factor ** 2), 3, padding='same', **kwargs)(x)
         return Lambda(pixel_shuffle(scale=factor))(x)
 
